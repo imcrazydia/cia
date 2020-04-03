@@ -1,6 +1,8 @@
 <html>
 <body>
 
+    <?php
+    ?>
 <form action="welcome.php" method="get">
 
     Naam: <input type="text" name="name"><br><br>
