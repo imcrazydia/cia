@@ -3,28 +3,29 @@
 
 <?php
 
-// Variables
-// 1. Define variables
-// 2. Set variables to empty values
-$name = "";
+// define variables and set to empty values
+$name = $email = $telephone = $website = "";
 
-// Request Method
-// 1. Check POST or GET
-// 2. Set variable with Checked Value
-
-
-$name = inputChecked($_POST["name"]);
-function inputChecked($var) {
-
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $name = input_filter($_POST["name"]);
+  $email = input_filter($_POST["email"]);
+  $telephone = input_filter($_POST["telephone"]);
+  $website = input_filter($_POST["website"]);
 }
 
+function input_filter($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
 
 ?>
 
-    Welkom <?php echo $_GET["name"]; ?><br><br>
-    E-mail: <?php echo $_GET["email"]; ?><br><br>
-    Telefoon <?php echo $_GET["telephone"]; ?><br><br>
-    Website <?php echo $_GET["website"]; ?><br><br>
+    <p>Welkom <?php echo $name; ?></p>
+    <p>E-mail: <?php echo $email; ?></p>
+    <p>Telefoon: <?php echo $telephone; ?></p>
+    <p>Website: <a href="<?php echo $website; ?>"><?php echo $website; ?></a></p>
 
 </body>
 </html>
